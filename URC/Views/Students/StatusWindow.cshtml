@@ -1,0 +1,64 @@
+﻿@model IEnumerable<URC.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+
+    List<AppliedOpportunity> temp = ViewData["AppliedOpportunity"] as List<AppliedOpportunity>;
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/admin.js" asp-append-version="true"></script>
+}
+
+<h1>Pending List</h1>
+
+<table class="table table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th style="width:700px;">
+                Title
+            </th>
+            <th>
+                Uid
+            </th>
+            <th>
+                testes
+            </th>
+            <th>
+                Control
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in temp)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunitiyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentEmail)
+                </td>
+                <td>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="tes1">
+                        @*<label class="custom-control-label pointer" for=""></label>*@
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="tes2">
+                        @*<label class="custom-control-label pointer" for=""></label>*@
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="tes3">
+                        @*<label class="custom-control-label pointer" for=""></label>*@
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

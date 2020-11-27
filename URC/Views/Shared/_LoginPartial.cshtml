@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="btn-group dropleft">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @UserManager.GetUserName(User)
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownAccount">
+                <h6 class="dropdown-header text-center">@User.FindFirstValue(ClaimTypes.Role)</h6>
+                <div class="dropdown-divider"></div>
+
+                <a id="dropdown-manage" class="nav-link text-dark text-center" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Account</a>
+                @if (ViewContext.HttpContext.User.IsInRole(URC.Const.RoleConst.STUDENT))
+                {
+                    <a class="dropdown-item" asp-area="" asp-controller="Students" asp-action="DashBoard">DashBoard</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="Index">Opportunities</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Students" asp-action="Create">Student Application</a>
+
+                }
+                @if (ViewContext.HttpContext.User.IsInRole(URC.Const.RoleConst.PROFESSOR))
+                {
+                    <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="DashBoard">DashBoard</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="Index">Opportunities</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="List">Opportunities List</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="Create">Create a New Opportunitiy</a>
+
+                    <a class="dropdown-item" asp-area="" asp-controller="Students" asp-action="Index">Student List</a>
+
+
+                }
+                <div class="dropdown-divider"></div>
+                <form id="dropdown-Logout" class="text-center" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="btn pull-right">
+                        Log out
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="nav-item">
+            <a class="nav-link text-white" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </div>
+
+        <div class="nav-item">
+            <a class="nav-link text-white" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </div>
+    }
+</div>

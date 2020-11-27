@@ -1,0 +1,56 @@
+﻿@{ ViewData["Title"] = "Search"; }
+
+<div style="margin-left:20px">
+</div>
+
+<br />
+
+<div class="col">
+    <div class="row" style="float: right">
+        <div title="PostPortion">
+            <input type="text" id="keyword" />
+            <input class="btn btn-primary" type="button" id="btnPost" value="Search" />
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+<table class="table" id="search-result-table">
+    <thead>
+        <tr>
+            <th>
+                <label class="control-label">uID</label>
+            </th>
+            <th>
+                <label class="control-label">Email Address</label>
+            </th>
+            <th>
+                <label class="control-label">GPA</label>
+            </th>
+            <th>
+                <label class="control-label">Student Skills</label>
+            </th>
+            <th>
+                <label class="control-label">Active</label>
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/find.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        function gettoken() {
+            var token = '@Html.AntiForgeryToken()';
+            token = $(token).val();
+            return token;
+       }
+    </script>
+}

@@ -1,0 +1,127 @@
+﻿<!--
+  Author:    Daniel Pak & Kyungyoon Kim
+  Date:      August 28th, 2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540, Kyungyoon Kim and Daniel Pak - This work may not be copied for use in Academic Coursework.
+
+  We, Kyungyoon Kim and Daniel Pak, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Opportunity  Page
+-->
+
+@{
+    ViewData["Title"] = "Opportunities";
+}
+@section Styles {
+    <link href="~/css/opportunities.css" rel="stylesheet" type="text/css" />
+}
+
+<h1>Research Opportunities</h1>
+<p>Look opportunities!</p>
+<hr>
+
+<div class="opportunities-container">
+    <div class="item">
+        <div class='image'><img src='~/img/replace-uofu.png' alt='Image will be here' /></div>
+
+        <div class="explain-container">
+            <p><h4>Health Education, Health Communication, and Health Policy Research</h4></p>
+
+            <p><h5>Jessica King (<a href="mailto:jess.king@utah.edu">jess.king@utah.edu</a>)</h5></p>
+
+            <p class="department">Health, Kinesiology, and Recreation</p>
+
+            <p>Health education and health policy research projects in tobacco regulatory science, more specifically e-cigarettes/vaping.</p>
+
+            <a class="link" asp-area="" asp-controller="Home" asp-action="Details">Look more detail</a>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="item">
+        <div class='image'><img src='~/img/replace-uofu.png' alt='Image will be here' /></div>
+
+        <div class="explain-container">
+            <p><h4>Urban Ecology: Water use of alternative groundcover species in the Red Butte Garden</h4></p>
+
+            <p><h5>Diane Pataki (<a href="mailto:iane.pataki@utah.edu">iane.pataki@utah.edu</a>)</h5></p>
+
+            <p class="department">Biology</p>
+
+            <p>
+                This is a study of the evapotranspiration of ground cover plant species that are proposed as alternatives to turfgrass lawns.
+                The project involves analyzing data previously collected at Red Butte Gardens.
+                Some additional field work at Red Butte will probably be needed.
+                The results will be used to determine which species require less water for irrigation than turfgrass,
+                and will inform water conservation policies and practices..
+            </p>
+
+            <a class="link" asp-area="" asp-controller="Home" asp-action="Details">Look more detail</a>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="item">
+        <div class='image'><img src='~/img/replace-uofu.png' alt='Image will be here' /></div>
+
+        <div class="explain-container">
+            <p><h4>City Climate Change Research Assistant</h4></p>
+
+            <p><h5>Devon Cantwell (<a href="mailto:u1148861@utah.edu">u1148861@utah.edu</a>)</h5></p>
+
+            <p class="department">Political Science</p>
+
+            <p>I am analyzing city climate action plans across the world and trying to find key themes, characteristics, and patterns of these climate action plans. Specifically, I will be focusing on Ho Chi Minh City, Buenos Aires, Seoul, and Mexico City, but will also be looking at other city environmental actions as needed for this project.</p>
+
+            <a class="link" asp-area="" asp-controller="Home" asp-action="Details">Look more detail</a>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="item">
+        <div class='image'><img src='~/img/replace-uofu.png' alt='Image will be here' /></div>
+
+        <div class="explain-container">
+            <p><h4>Undergraduate researchers for a study on Campus Intimate Partner Violence</h4></p>
+
+            <p><h5>Heather Melton (<a href="mailto:heather.melton@soc.utah.edu">heather.melton@soc.utah.edu</a>)</h5></p>
+
+            <p class="department">Sociology</p>
+
+            <p>“How College Students Describe and Experience Intimate Partner Violence: A University of Utah Landscape Study” is a year-long study that includes an inventory of educational practices, policy and practice analysis, observations, focus groups, walking interviews, and staff interviews. It seeks to understand the landscape of all on campus around intimate personal violence, particularly students with minoritized identities. Work under grad students & faculty project investigators (Drs. Linder, Melton, & Richards).</p>
+
+            <a class="link" asp-area="" asp-controller="Home" asp-action="Details">Look more detail</a>
+        </div>
+    </div>
+
+    <hr />
+</div>
+
+<div class="index-container">
+    <a class="prev" href="wip"><</a>
+    <a class="on" href="wip">1</a>
+    <a href="wip">2</a>
+    <a href="wip">3</a>
+    <a href="wip">4</a>
+    <a href="wip">5</a>
+    <a class="next" href="wip">></a>
+</div>
+
+<div class="search-container">
+    <select name="method">
+        <option value="title">Title</option>
+        <option value="name">Name</option>
+        <option value="department">Department</option>
+        <option value="summary">Summary</option>
+    </select>
+
+    <input type="text" name="qurey">
+
+    <button class="btn-primary">Search</button>
+</div>

@@ -1,0 +1,103 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1",
+        "title": "URC API",
+        "license": {
+            "name": "Daniel Pak, Kyungyoon Kim"
+        }
+    },
+    "servers": [
+        {
+            "url": "localhost:5000"
+        }
+    ],
+    "paths": {
+        "/Students/Apply": {
+            "post": {
+                "summary": "Set the student's state as apply or remove",
+                "tags": [
+                    "user"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "uID": {
+                                        "description": "URC StudentDB uID",
+                                        "type": "string",
+                                        "default": "u1234567"
+                                    },
+                                    "apply_remove": {
+                                        "description": "Apply or Remove",
+                                        "type": "string",
+                                        "default": "apply"
+                                    }
+                                },
+                                "required": [
+                                    "user_id", "add_remove"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Set the student's state",
+                        "headers": {
+                            "x-next": {
+                                "description": "Set the student's state",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/Students/Search": {
+            "post": {
+                "summary": "Search Student skills return it as Json",
+                "tags": [
+                    "user"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "words": {
+                                        "description": "Words that want to search",
+                                        "type": "string",
+                                        "default": "Skiil 1"
+                                    }
+                                    
+                                },
+                                "required": [
+                                    "words"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Return Student data file",
+                        "headers": {
+                            "x-next": {
+                                "description": "Return Student data file",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

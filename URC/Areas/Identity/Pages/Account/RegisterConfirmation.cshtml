@@ -1,0 +1,19 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+
+    var returnUrl = Request.Query["returnUrl"];
+    if (returnUrl.Count == 0 || returnUrl.ToString().Length == 0)
+        ViewData["ReturnUrl"] = "/";
+    else
+        ViewData["ReturnUrl"] = returnUrl;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+        Please check your email (@Model.Email) to confirm your account.
+</p>
+
+<button class="btn btn-primary" onclick="location.href='@ViewData["ReturnUrl"]'">Go Back</button>

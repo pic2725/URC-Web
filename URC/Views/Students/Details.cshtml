@@ -1,0 +1,125 @@
+﻿@model URC.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+@functions {
+
+    public bool checkUser(User user, Student student)
+    {
+        if(user.identity.Email == student.EmailAddress)
+        {
+            return true;
+        }
+        return false;
+    }
+
+}
+
+<h1>Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <label class="control-label">First Name</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Last Name</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Email Address</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Phone Number</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Degree Plan</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DegreePlan)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GPA)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GPA)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Hours Per Week</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HoursPerWeek)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Personal Statement</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.personalStatement)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Expected Graduation Date</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ExpectedGraduationDate)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Application Date</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ApplicationDate)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Resume</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Resume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Student Skills</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentSkills)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Student Completed Courses</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentCompletedCourses)
+        </dd>
+        <dt class="col-sm-2">
+            <label class="control-label">Student Interests </label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentInterests)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Uid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

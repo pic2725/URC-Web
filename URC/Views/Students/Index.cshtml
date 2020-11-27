@@ -1,0 +1,92 @@
+﻿@model IEnumerable<URC.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>List</h1>
+
+<div class="search-container">
+
+    <form asp-controller="Students" asp-action="Index" method="get" style="float:right; margin-top:1rem">
+
+        <select id="searchType" name="searchTarget" style="height: 29px; width:110px; position:relative">
+            <option value="UID">Uid</option>
+            <option value="EMAILADDRESS">Email</option>
+            <option value="GPA">GPA</option>
+            <option value="DEGREEPLAN">Degree Plan</option>
+            <option value="HOURSPERWEEK">Hours Per Week</option>
+            <option value="SKILLS">Skills</option>
+            <option value="COMPLETEDCOURSE">Completed Course</option>
+            <option value="INTEREST">Interests</option>
+
+        </select>
+        
+
+        <input type="text" name="SearchString" style="height: 29px; width:400px; position:relative" />
+        <button class="btn-primary" type="submit" value="Filter" style="position: relative">Search</button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Uid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoursPerWeek)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedGraduationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoursPerWeek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedGraduationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Uid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Uid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Uid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

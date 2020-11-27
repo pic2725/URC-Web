@@ -1,0 +1,243 @@
+﻿<!--
+  Author:    Daniel Pak & Kyungyoon Kim
+  Date:      August 28th, 2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540, Kyungyoon Kim and Daniel Pak - This work may not be copied for use in Academic Coursework.
+
+  We, Kyungyoon Kim and Daniel Pak, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     DashBoard Page
+-->
+@model IEnumerable<URC.Models.Opportunity>
+
+
+@section Styles {
+    <link href="~/css/opportunities.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/detail.css" rel="stylesheet" type="text/css" />
+
+}
+
+@section Scripts {
+    <script type="text/javascript" src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+}
+
+@{
+    var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.ProjectName).ToList());
+    var YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.numOfViews).ToList());
+    var Y_Values = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.numOfApplied).ToList());
+
+    List<Opportunity> opportunities = ViewData["Opportunity"] as List<Opportunity>;
+    List<AppliedOpportunity> appliedOpportunities = ViewData["AppliedOpportunity"] as List<AppliedOpportunity>;
+    List<AppliedOpportunity> pendingList = ViewData["PendingList"] as List<AppliedOpportunity>;
+
+    int getNumPendingList()
+    {
+        return pendingList.Count();
+    }
+}
+
+@functions {
+    public int getTotalOpportunities()
+    {
+        int totalNum = 0;
+        foreach (var item in Model)
+        {
+            totalNum++;
+        }
+
+        return totalNum;
+    }
+
+    public int getOnGoningOpportunities()
+    {
+        int num = 0;
+        foreach (var item in Model)
+        {
+            if (item.Filled == true)
+            {
+                num++;
+            }
+        }
+        return getTotalOpportunities() - num;
+    }
+
+    public int getEndingSoonOpportunities()
+    {
+        int num = 0;
+
+        foreach (var item in Model)
+        {
+            var temp = Math.Abs(item.EndDate.Subtract(DateTime.Now).TotalHours);
+            var endDate = item.EndDate;
+            var current = DateTime.Now;
+            if (temp <= 168)
+            {
+                num++;
+            }
+        }
+
+        return num;
+    }
+
+    public int getFilledOutOpportunities()
+    {
+        int num = 0;
+
+        foreach (var item in Model)
+        {
+            if (item.Filled == true)
+            {
+                num++;
+            }
+        }
+
+        return num;
+    }
+
+    public string[] getXaxisData()
+    {
+        string[] store = new string[Model.Count()];
+        store = Model.Select(x => x.ProjectName).ToArray();
+        System.Diagnostics.Debug.WriteLine(store);
+        return store;
+    }
+
+    public int[] getYaxisData()
+    {
+        int[] store = new int[Model.Count()];
+        store = Model.Select(x => x.numOfViews).ToArray();
+        System.Diagnostics.Debug.WriteLine(store);
+        return store;
+    }
+}
+
+<div class="title-container">
+    @* <div class="btn_goback"><button class="btn btn-primary" onclick="location.href='@Url.Action("Create")'">Create New</button></div>*@
+    <div class="title"><h1>@User.Identity.Name's  DashBoard</h1></div>
+</div>
+<br />
+<br />
+
+
+<div class="container-lg">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card" style="background-color:lightblue;">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align:center;">Total</h5>
+                    <p class="card-text" style="text-align:center;">@getTotalOpportunities()</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body" style="background-color:lightblue;">
+                    <h5 class="card-title" style="text-align:center;">onGoing</h5>
+                    <p class="card-text" style="text-align:center;">@getOnGoningOpportunities()</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body" style="background-color:lightblue;">
+                    <h5 class="card-title" style="text-align:center;">Ending This Week</h5>
+                    <p class="card-text" style="text-align:center;">@getEndingSoonOpportunities()</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body" style="background-color:lightblue;">
+                    <h5 class="card-title" style="text-align:center;">Filled Out</h5>
+                    <p class="card-text" style="text-align:center;">@getFilledOutOpportunities()</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+<!--Modal-->
+<div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" , style="text-align:left;">
+                <p id="modalP"></p>
+                <br />
+                <p id="appliedDate"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br />
+<br />
+
+
+
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("StatusWindow", "Students")'" style="float:right;">
+    Pending List  <span class="badge badge-light">@getNumPendingList()</span>
+</button>
+<table class="table table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th style="width:700px;">
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BeginningDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                Control
+            </th>
+        </tr>
+    </thead>
+   
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="open-myModal">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeginningDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.OpportunityID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.OpportunityID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.OpportunityID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

@@ -1,0 +1,86 @@
+﻿<!--
+  Author:    Daniel Pak & Kyungyoon Kim
+  Date:      August 28th, 2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540, Kyungyoon Kim and Daniel Pak - This work may not be copied for use in Academic Coursework.
+
+  We, Kyungyoon Kim and Daniel Pak, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Opportunity Index Page
+-->
+@using URC.Extension
+@using URC.Const
+@model List<User>
+@{
+    ViewData["Title"] = "Users and Roles";
+}
+
+@functions {
+
+    public string hasRoleForCheckbox(User user, string role)
+    {
+        return user.roles.Contains(role) ? "checked=\"checked\"" : "";
+    }
+
+}
+
+<div class="title-container">
+    <div class="title"><h1>@ViewData["Title"]</h1> </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">UserName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Admin</th>
+                <th scope="col">Professor</th>
+                <th scope="col">Student</th>
+                <th></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+            <tr>
+                <th scope="row">@user.identity.UserName</th>
+                <th scope="row">@user.identity.Email</th>
+                <td>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="@user.identity.Id-@RoleConst.ADMIN" @hasRoleForCheckbox(user, RoleConst.ADMIN)>
+                        <label class="custom-control-label pointer" for="@user.identity.Id-@RoleConst.ADMIN"></label>
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="@user.identity.Id-@RoleConst.PROFESSOR" @hasRoleForCheckbox(user, RoleConst.PROFESSOR)>
+                        <label class="custom-control-label pointer" for="@user.identity.Id-@RoleConst.PROFESSOR"></label>
+                    </div>
+                </td>
+                <td>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="@user.identity.Id-@RoleConst.STUDENT" @hasRoleForCheckbox(user, RoleConst.STUDENT)>
+                        <label class="custom-control-label pointer" for="@user.identity.Id-@RoleConst.STUDENT"></label>
+                    </div>
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.identity.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@user.identity.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@user.identity.Id">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/admin.js" asp-append-version="true"></script>
+}

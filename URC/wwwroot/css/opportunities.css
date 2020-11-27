@@ -1,0 +1,117 @@
+/*
+  Author:    Daniel Pak & Kyungyoon Kim
+  Date:      August 28th, 2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540, Kyungyoon Kim and Daniel Pak - This work may not be copied for use in Academic Coursework.
+
+  We, Kyungyoon Kim and Daniel Pak, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     opportunities CSS Page
+
+*/
+
+table td tr {
+    border: 0px;
+}
+
+td tr {
+    width: 100%;
+}
+
+.opportunities-container {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}
+
+    .opportunities-container .item {
+        width: 100%;
+        display: inline-block;
+        padding: 1rem;
+        vertical-align: top;
+    }
+
+        .opportunities-container .item .image {
+            float: left;
+            width: 30%;
+            vertical-align: top;
+            padding: 20px 20px 10px 10px;
+            overflow: hidden;
+        }
+
+            .opportunities-container .item .image > * {
+                display: block;
+                width: 100%;
+            }
+
+        .opportunities-container .item .explain-container {
+            overflow: hidden;
+        }
+
+            .opportunities-container .item .explain-container .department {
+                color: darkgray;
+            }
+
+            .opportunities-container .item .explain-container .email {
+                color: red;
+            }
+
+            .opportunities-container .item .explain-container .link {
+                float: right;
+            }
+
+.index-container {
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+
+    .index-container a {
+        display: inline-block;
+        color: gray;
+        width: 24px;
+        height: 24px;
+        margin: 0 2px;
+        line-height: 24px;
+        box-sizing: border-box;
+    }
+
+        .index-container a.on {
+            border: 1px solid gray;
+            color: #ac202e;
+        }
+
+        .index-container a.prev,
+        .index-container a.next {
+            width: auto;
+        }
+
+            /* Vertical dash line for next button */
+            .index-container a.next:before {
+                content: '';
+                display: inline-block;
+                width: 1px;
+                height: 16px;
+                margin: 6px 12px 0 3px;
+                vertical-align: top;
+                background-color: #e5e5e5;
+            }
+
+            /* Vertical dash line for prev button */
+            .index-container a.prev:after {
+                content: '';
+                display: inline-block;
+                width: 1px;
+                height: 16px;
+                margin: 6px 0 3px 12px;
+                vertical-align: top;
+                background-color: #e5e5e5;
+            }
+
+.image-preview {
+    width: 20vh;
+}
+

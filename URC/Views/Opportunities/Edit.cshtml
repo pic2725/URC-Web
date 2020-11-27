@@ -1,0 +1,131 @@
+﻿<!--
+  Author:    Daniel Pak & Kyungyoon Kim
+  Date:      August 28th, 2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540, Kyungyoon Kim and Daniel Pak - This work may not be copied for use in Academic Coursework.
+
+  We, Kyungyoon Kim and Daniel Pak, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Opportunity edit Page
+-->
+@model URC.Models.Opportunity
+
+@{
+    ViewData["Title"] = "Edit Opportunity";
+}
+
+@section Styles {
+    <link href="~/css/opportunities.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/detail.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="title-container">
+    <div class="btn_goback"><button class="btn btn-primary" onclick="location.href='@Url.Action("List")'">Go Back to List</button></div>
+
+    <div class="title"><h1>@ViewData["Title"]</h1> </div>
+</div>
+
+<hr />
+<div class="container">
+    <form asp-action="Edit">
+        <input type="hidden" asp-for="OpportunityID" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Project Name</label>
+                <input asp-for="ProjectName" class="form-control" required />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label"> *Professor Name</label>
+                <input asp-for="ProfessorName" class="form-control" required />
+                <span asp-validation-for="ProfessorName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Professor Email</label>
+                <input asp-for="ProfessorEmail" class="form-control" required />
+                <span asp-validation-for="ProfessorEmail" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Department</label>
+                <input asp-for="Department" class="form-control" required />
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-8 mb-3">
+                <label class="control-label">*Description</label>
+                <input asp-for="Description" class="form-control" required />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-8 mb-3">
+                <input hidden id="AssociatedImag" asp-for="AssociatedImag" required />
+                <label class="control-label">Thumbnail</label>
+                <div id="AssociatedImagPreviewWarpper">
+                    <img id="AssociatedImagPreview" class="image-preview" src="@Html.DisplayFor(model => model.AssociatedImag)" />
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="AssociatedIamgSelector" accept="image/*" onchange="onAssociatedImagSelected(this)">
+                    <label class="custom-file-label" id="AssociatedIamgLabel" for="AssociatedIamgSelector">Choose file to update</label>
+                    <span asp-validation-for="AssociatedImag" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Student Mentor</label>
+                <input asp-for="StudentMentor" class="form-control" required />
+                <span asp-validation-for="StudentMentor" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Pay</label>
+                <input asp-for="Pay" class="form-control" placeholder="$20 per hour" required />
+                <span asp-validation-for="Pay" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Beginning Date</label>
+                <input asp-for="BeginningDate" class="form-control" required />
+                <span asp-validation-for="BeginningDate" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*End Date</label>
+                <input asp-for="EndDate" class="form-control" required />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Required Skills</label>
+                <input asp-for="RequiredSkills" class="form-control" placeholder="Skill1, Skill2, Skill3" required />
+                <span asp-validation-for="RequiredSkills" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Search Tags</label>
+                <input asp-for="SearchTags" class="form-control" placeholder="Tag1, Tag2, Tag3" required />
+                <span asp-validation-for="SearchTags" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Filled" /> @Html.DisplayNameFor(model => model.Filled)
+            </label>
+        </div>
+        <div class="form-row">
+            <input type="submit" value="Edit" class="btn btn-primary"/>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/opportunity.js" asp-append-version="true"></script>
+}

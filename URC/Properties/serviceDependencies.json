@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "URC_Context3"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "UsersRolesDBConnection"
+    },
+    "mssql4": {
+      "type": "mssql",
+      "connectionId": "StudentDB"
+    },
+    "mssql5": {
+      "type": "mssql",
+      "connectionId": "URCcontext"
+    }
+  }
+}

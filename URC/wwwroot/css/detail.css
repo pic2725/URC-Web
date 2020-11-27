@@ -1,0 +1,137 @@
+/*
+  Author:    Daniel Pak & Kyungyoon Kim
+  Date:      August 28th, 2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540, Kyungyoon Kim and Daniel Pak - This work may not be copied for use in Academic Coursework.
+
+  We, Kyungyoon Kim and Daniel Pak, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Detail CSS Page
+
+*/
+
+table td tr {
+    border: 0px;
+}
+
+td tr {
+    width: 100%;
+}
+
+.title-container {
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto;
+}
+
+    .title-container .title {
+        display: contents;
+        float: left;
+    }
+
+    .title-container .btn_goback {
+        float: right;
+    }
+
+.summary-container {
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-left: 20px;
+    vertical-align: top;
+}
+
+    .summary-container .title {
+        padding-top: 20px;
+        padding-bottom: 50px;
+        width: 100%;
+    }
+
+    .summary-container .descriptions {
+        float: right;
+        margin: 0 auto;
+        padding-bottom: 50px;
+        text-indent: 35px;
+        display: inline-block;
+    }
+
+    .summary-container .image {
+        margin-bottom: 1rem;
+        float: left;
+        display: inline-block;
+    }
+
+        .summary-container .image > * {
+            width: 40%;
+        }
+
+    .summary-container .info {
+    }
+
+        .summary-container .info .contact {
+            text-align: right;
+            float: right;
+            overflow: hidden;
+        }
+
+            .summary-container .info .contact .department {
+                color: darkgray;
+                padding-top: 10px;
+                font-variant: small-caps;
+            }
+
+            .summary-container .info .contact .name {
+                font-weight: bold;
+                padding-top: 10px;
+                font-size: 20px;
+            }
+
+            .summary-container .info .contact .email {
+                padding-top: 10px;
+            }
+
+            .summary-container .info .contact .btn_apply {
+                float: right;
+                padding-top: 10px;
+            }
+
+.detail-container {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}
+
+    .detail-container .item {
+        display: inline-block;
+        padding: 1rem;
+        vertical-align: top;
+    }
+
+        .detail-container .item .title {
+            line-height: 15px;
+            font-weight: bold;
+            box-sizing: border-box;
+            padding-bottom: 30px;
+        }
+
+            .detail-container .item .title:before {
+                content: "";
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                padding-top: 10px;
+                margin: 0px 6px 0 0;
+                border: 1px solid gray;
+                border-radius: 7.5px;
+            }
+
+        .detail-container .item .descriptions {
+            margin: 0 auto;
+            clear: both;
+            text-indent: 35px;
+            text-align: left;
+        }

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<URC.Models.Student>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<div style="margin-left:20px">
+    Test
+</div>
+<br />
+<div title="PostPortion">
+    <input type="text" id="inputBox" />
+    <input type="button" id="btnPost" value="Search" />
+</div>
+<span id="msg" style="color:red;" />
+
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <label class="control-label">uID</label>
+                </th>
+                <th>
+                    <label class="control-label">Email Address</label>
+                </th>
+                <th>
+                    <label class="control-label">GPA</label>
+                </th>
+                <th>
+                    <label class="control-label">Student Skills</label>
+                </th>
+
+                <th>
+                    <label class="control-label">*Expected Graduation Date</label>
+                </th>
+                <th>
+                    <label class="control-label">Application Date</label>
+                </th>
+                <th>
+                    <label class="control-label">Active</label>
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GPA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentSkills)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedGraduationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Uid">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Uid">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Uid">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/find.js" asp-append-version="true"></script>
+}

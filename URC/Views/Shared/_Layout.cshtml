@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<!--
+  Author:    Daniel Pak & Kyungyoon Kim
+  Date:      August 28th, 2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540, Kyungyoon Kim and Daniel Pak - This work may not be copied for use in Academic Coursework.
+
+  We, Kyungyoon Kim and Daniel Pak, certify that I wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+
+     Opportunity Detail Page
+-->
+
+@{
+    var currentViewName = ViewBag.CurrentView;
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Undergraduate Research Coordinator">
+    <meta name="keywords" content="Research, Undergraduate, College, Opportunity">
+    <meta name="author" content="Kyungyoon Kim and Dainel Pak">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - URC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", false)
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand mb-0 h1" asp-area="" asp-controller="Home" asp-action="Index">CS4540</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home<span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @if (ViewContext.HttpContext.User.IsInRole(URC.Const.RoleConst.STUDENT))
+                            {
+                                <a class="dropdown-item" asp-area="" asp-controller="Students" asp-action="DashBoard">DashBoard</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Students" asp-action="Index">List</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="Index">Opportunities</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Students" asp-action="Create">Student Application</a>
+
+                            }
+                            @if (ViewContext.HttpContext.User.IsInRole(URC.Const.RoleConst.PROFESSOR))
+                            {
+                                <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="DashBoard">DashBoard</a>
+
+                                <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="Index">Opportunities</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="List">Opportunities List</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Students" asp-action="Index">Student List</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Students" asp-action="Find">Find Students</a>
+
+                            }
+                            @if (ViewContext.HttpContext.User.IsInRole(URC.Const.RoleConst.ADMIN))
+                            {
+                                <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="Index">Opportunities</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Opportunities" asp-action="List">Opportunities List</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Permission">Users and Roles admin page</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Students" asp-action="Index">Student List</a>
+                            }
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            TA
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <h6 class="dropdown-header">Daniel Pak</h6>
+                            <h6 class="dropdown-header">Kyungyoon Kim</h6>
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item" href="/Students/Details/u1234567">View Application of student 1</a>
+                            <a class="dropdown-item" href="/Students/Details/u1234568">View Application of student 2</a>
+                            <a class="dropdown-item" href="/Students/Edit/u1234567">Edit Application for student 1</a>
+                            <a class="dropdown-item" href="/Students/Edit/u1234568">Edit Application for student 2</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="Students" asp-action="Search">Search For Students Page</a>
+                        </div>
+                    </li>
+                </ul>
+
+                 <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <br />
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - URC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

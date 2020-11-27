@@ -1,0 +1,126 @@
+﻿@model URC.Models.Student
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="container">
+    <form asp-action="Edit">
+        <div class="form-row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*uID</label>
+                <input asp-for="Uid" class="form-control" />
+                <span asp-validation-for="Uid" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Email Address</label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Phone Number</label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Degree Plan</label>
+                <input asp-for="DegreePlan" class="form-control" />
+                <span asp-validation-for="DegreePlan" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*GPA</label>
+                <input asp-for="GPA" class="form-control" />
+                <span asp-validation-for="GPA" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Hours Per Week</label>
+                <input asp-for="HoursPerWeek" class="form-control" />
+                <span asp-validation-for="HoursPerWeek" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Personal Statement</label>
+                <input asp-for="personalStatement" class="form-control" />
+                <span asp-validation-for="personalStatement" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-8 mb-3">
+                <input hidden id="AssociatedImag" asp-for="Resume" required />
+                <label class="control-label">Resume</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="AssociatedResumeSelector" accept="image/*" onchange="onAssociatedResumeSelected(this)">
+                    <label class="custom-file-label" id="AssociatedResumeLabel" for="AssociatedResumeSelector">Choose file</label>
+                    <span asp-validation-for="Resume" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Expected Graduation Date</label>
+                <input asp-for="ExpectedGraduationDate" class="form-control" />
+                <span asp-validation-for="ExpectedGraduationDate" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Student Interests</label>
+                <input asp-for="StudentInterests" class="form-control" />
+                <span asp-validation-for="StudentInterests" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Student Skills</label>
+                <input asp-for="StudentSkills" class="form-control" />
+                <span asp-validation-for="StudentSkills" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="control-label">*Student Completed Courses</label>
+                <input asp-for="StudentCompletedCourses" class="form-control" />
+                <span asp-validation-for="StudentCompletedCourses" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+            </label>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/Student.js" asp-append-version="true"></script>
+}

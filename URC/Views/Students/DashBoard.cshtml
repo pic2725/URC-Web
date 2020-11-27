@@ -1,0 +1,220 @@
+﻿@model IEnumerable<Student>
+@using URC.Const
+
+@{
+    ViewData["Title"] = "Index";
+
+    List<AppliedOpportunity> temp = ViewData["AppliedOpportunity"] as List<AppliedOpportunity>;
+
+    int numPending()
+    {
+        int count = 0;
+        foreach (var item in temp)
+        {
+            if(item.Status == StatusConst.PENDING)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    int numProcessing()
+    {
+        int count = 0;
+        foreach (var item in temp)
+        {
+            if (item.Status == StatusConst.PROCESSING)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    int numDenied()
+    {
+        int count = 0;
+        foreach (var item in temp)
+        {
+            if (item.Status == StatusConst.DENIED)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    int numAccepted()
+    {
+        int count = 0;
+        foreach (var item in temp)
+        {
+            if (item.Status == StatusConst.PROCESSING)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+}
+
+<div class="title-container">
+    @* <div class="btn_goback"><button class="btn btn-primary" onclick="location.href='@Url.Action("Create")'">Create New</button></div>*@
+    <div class="title"><h1>@User.Identity.Name's  DashBoard</h1></div>
+</div>
+
+<br />
+<br />
+<div class="row">
+    <div class="col-sm-3">
+        <div class="card" style="background-color:lightblue;">
+            <div class="card-body">
+                <h5 class="card-title" style="text-align:center;">Pending</h5>
+                <p class="card-text" style="text-align:center;">@numPending()</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body" style="background-color:lightblue;">
+                <h5 class="card-title" style="text-align:center;">Processing</h5>
+                <p class="card-text" style="text-align:center;">@numProcessing()</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body" style="background-color:lightblue;">
+                <h5 class="card-title" style="text-align:center;">Denied</h5>
+                <p class="card-text" style="text-align:center;">@numDenied()</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card">
+            <div class="card-body" style="background-color:lightblue;">
+                <h5 class="card-title" style="text-align:center;">Accepted</h5>
+                <p class="card-text" style="text-align:center;">@numAccepted()</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" style="width:400px;">Title</th>
+            <th scope="col">Professor</th>
+            <th scope="col" style="width:150px;">Department</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in temp)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunitiyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunityProfessor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunityDepartment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppliedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <th>
+                    <a asp-controller="Opportunities" asp-action="Details" asp-route-id="@item.OpportunitiyID" style="float:left;">More</a>
+                </th>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<h2>Profile</h2>
+<br />
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Uid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoursPerWeek)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedGraduationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GPA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoursPerWeek)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedGraduationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Uid">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Uid">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Uid">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
