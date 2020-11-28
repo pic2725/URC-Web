@@ -10,11 +10,6 @@ CS 4540, University of Utah, School of Computing
 #### Copyright
 CS 4540, Kyungyoon Kim and Daniel Pak - This work may not be copied for use in Academic Coursework.
 
-#### Deployed URL
-
-Daniel Pak :  https://ec2-18-234-87-96.compute-1.amazonaws.com 
-
-Kyungyoon Kim : https://ec2-3-211-215-76.compute-1.amazonaws.com/
 
 #### Github Page
 https://github.com/uofu-cs4540-fall2020/urc-ps1-hello-web
